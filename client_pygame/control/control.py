@@ -117,18 +117,22 @@ class Control(BaseControl):
             engine.set_player_speed_slow()
             engine.set_player_direction(270)
             engine.set_missile_direction(270)
+            engine.set_player_speed_stop()
         elif pygame.K_DOWN in keys:
             engine.set_player_speed_slow()
             engine.set_player_direction(90)
             engine.set_missile_direction(90)
+            engine.set_player_speed_stop()
         elif pygame.K_LEFT in keys:
             engine.set_player_speed_slow()
             engine.set_player_direction(180)
             engine.set_missile_direction(180)
+            engine.set_player_speed_stop()
         elif pygame.K_RIGHT in keys:
             engine.set_player_speed_slow()
             engine.set_player_direction(0)
             engine.set_missile_direction(0)
+            engine.set_player_speed_stop()
 
        # if pygame.K_1 in newkeys:
         #    engine.set_player_speed_stop()
