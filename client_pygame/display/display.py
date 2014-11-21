@@ -261,16 +261,16 @@ class Display(BaseDisplay):
                 elif obj.get_dx > 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
                         # facing right image                        
-                        if self.image_count <= 3:
+                        if self.image_count <= 4:
                             surface.blit(self.player_image_right1, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
-                        elif 3 < self.image_count <= 5:
+                        elif 4 < self.image_count <= 6:
                             self.image_count += 1
                             surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
-                        elif 5 < self.image_count <= 8:
+                        elif 6 < self.image_count <= 9:
                             surface.blit(self.player_image_right2, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
-                        elif self.image_count > 8:
+                        elif self.image_count > 9:
                             self.image_count = 0
                             surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
                     else:
