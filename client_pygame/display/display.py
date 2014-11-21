@@ -236,6 +236,8 @@ class Display(BaseDisplay):
                 color = self.player_color
             else:
                 color = self.opponent_color
+            # Marshall the next line draws a image for the player
+            #surface.blit("SomeFilePathGoesHere.png", (obj.get_px, obj.get_py))
             pygame.draw.rect(surface, color, rect)
         return
 
