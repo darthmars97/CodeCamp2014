@@ -185,7 +185,7 @@ class Display(BaseDisplay):
         Should process the event and decide if it needs to be displayed, or heard.
         """
         import os
-        print(os.getcwd())
+        #print(os.getcwd())
         if isinstance(event, MissileFireEvent):
             sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
             sound.set_volume(1.00)
