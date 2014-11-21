@@ -184,6 +184,8 @@ class Display(BaseDisplay):
         """
         Should process the event and decide if it needs to be displayed, or heard.
         """
+        if event == E_MISSLE_FIRE:
+            #pygame.sound("fire.wav")
         return
 
     # The following methods draw appropriate rectangles
