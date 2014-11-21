@@ -101,6 +101,9 @@ class Display(BaseDisplay):
         self.player_image_front2 = pygame.image.load("FrontWalk2.png")
         self.player_image_back1 = pygame.image.load("BackWalk1.png")
         self.player_image_back2 = pygame.image.load("BackWalk2.png")
+        self.player_image_right_standard = pygame.image.load("SideStandard.png")
+        self.player_image_right1 = pygame.image.load("SideWalk1.png")
+        self.player_image_right2 = pygame.image.load("SideWalk2.png")
         self.image_count      = 0
         self.opponent_color   = (255, 0, 0)
         self.missile_color    = (0, 255, 255)
@@ -242,8 +245,8 @@ class Display(BaseDisplay):
                 # Marshall the next line draws a image for the player
                 if obj.get_dx() <= 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
-                        # facing right image
-                        surface.blit(self.player_image_front1, (obj.get_px(), obj.get_py()))
+                        # facing left image
+                        surface.blit(self.player_image, (obj.get_px(), obj.get_py()))
                     else:
                         # facing up image
                         if self.image_count <= 5:
@@ -257,8 +260,19 @@ class Display(BaseDisplay):
                             surface.blit(self.player_image_back1, (obj.get_px(), obj.get_py()))
                 elif obj.get_dx > 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
-                        # facing left image
-                        surface.blit(self.player_image, (obj.get_px(), obj.get_py()))
+                        # facing right image                        
+                        if self.image_count <= 2:
+                            surface.blit(self.player_image_right1, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif 2 < self.image_count <= 4:
+                            self.image_count += 1
+                            surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
+                        elif 4 < self.image_count <= 7:
+                            surface.blit(self.player_image_right2, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif self.image_count > 7:
+                            self.image_count = 0
+                            surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
                     else:
                         # facing down image
                         if self.image_count <= 5:
