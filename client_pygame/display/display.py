@@ -104,6 +104,9 @@ class Display(BaseDisplay):
         self.player_image_right_standard = pygame.image.load("SideStandard.png")
         self.player_image_right1 = pygame.image.load("SideWalk1.png")
         self.player_image_right2 = pygame.image.load("SideWalk2.png")
+        self.player_image_left_standard = pygame.image.load("LeftStandard.png")
+        self.player_image_left1 = pygame.image.load("LeftWalk1.png")
+        self.player_image_left2 = pygame.image.load("LeftWalk2.png")
         self.image_count      = 0
         self.opponent_color   = (255, 0, 0)
         self.missile_color    = (0, 255, 255)
@@ -246,7 +249,18 @@ class Display(BaseDisplay):
                 if obj.get_dx() <= 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
                         # facing left image
-                        surface.blit(self.player_image, (obj.get_px(), obj.get_py()))
+                        if self.image_count <= 4:
+                            surface.blit(self.player_image_left1, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif 4 < self.image_count <= 6:
+                            self.image_count += 1
+                            surface.blit(self.player_image_left_standard, (obj.get_px(), obj.get_py()))
+                        elif 6 < self.image_count <= 9:
+                            surface.blit(self.player_image_left2, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif self.image_count > 9:
+                            self.image_count = 0
+                            surface.blit(self.player_image_left_standard, (obj.get_px(), obj.get_py()))
                     else:
                         # facing up image
                         if self.image_count <= 5:
