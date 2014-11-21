@@ -114,6 +114,7 @@ class Display(BaseDisplay):
         self.wall_color       = (255, 255, 255)
         self.text_color       = (255, 255, 255)
         self.background_color = (0, 0, 0)
+        self.background_image = pygame.image.load("BackgroundV1.png")
         return
 
     def paint_pregame(self, surface, control):
@@ -156,7 +157,7 @@ class Display(BaseDisplay):
         """
         # background
         rect = pygame.Rect(0, 0, self.width, self.height)
-        surface.fill(self.background_color, rect)
+        surface.blit(self.background_image, rect)
             
         # draw each object
         objs = engine.get_objects()
