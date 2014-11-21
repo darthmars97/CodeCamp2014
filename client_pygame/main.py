@@ -4,7 +4,7 @@ sys.path.append('..')
 from pygame_client import PygameClient
 from config import *
 
-"My name is Ben"
+
 
 #
 # Main controlling program.  You should not change anything here.
