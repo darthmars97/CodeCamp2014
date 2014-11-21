@@ -96,7 +96,7 @@ class Display(BaseDisplay):
         # The values are how much red, green, and blue to use in the color.
         # Check out http://www.colorpicker.com/ if you want to try out
         # colors and find their RGB values.
-        self.player_color     = (0, 255, 0)
+        self.player_image     = pygame.image.load("FrontStandard.png")
         self.opponent_color   = (255, 0, 0)
         self.missile_color    = (0, 255, 255)
         self.npc_color        = (255, 255, 0)
@@ -233,12 +233,12 @@ class Display(BaseDisplay):
         if obj.is_alive():
             rect = self.obj_to_rect(obj)
             if obj.get_oid() == engine.get_player_oid():
-                color = self.player_color
+                #color = self.player_color
+                # Marshall the next line draws a image for the player
+                surface.blit(self.player_image, (obj.get_px(), obj.get_py()))
             else:
                 color = self.opponent_color
-            # Marshall the next line draws a image for the player
-            #surface.blit("SomeFilePathGoesHere.png", (obj.get_px, obj.get_py))
-            pygame.draw.rect(surface, color, rect)
+                pygame.draw.rect(surface, color, rect)
         return
 
     def paint_game_status(self, surface, engine, control):
