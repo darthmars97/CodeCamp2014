@@ -76,6 +76,7 @@ class Control(BaseControl):
         BaseControl.__init__(self, width, height)
         # used to control display of individual item information
         self.show_info = False
+        self.moving = False
         return
 
     def pregame_control(self, engine, keys, newkeys, buttons, newbuttons, mouse_position):
@@ -114,24 +115,34 @@ class Control(BaseControl):
         (mouse_x, mouse_y) = mouse_position
         
         if pygame.K_UP in keys:
-            engine.set_player_speed_slow()
+            # engine.set_player_speed_slow()
             engine.set_player_direction(270)
             engine.set_missile_direction(270)
-            engine.set_player_speed_stop()
+            # engine.set_player_speed_stop()
+            self.moving = True
         elif pygame.K_DOWN in keys:
-            engine.set_player_speed_slow()
+            #engine.set_player_speed_slow()
             engine.set_player_direction(90)
             engine.set_missile_direction(90)
-            engine.set_player_speed_stop()
+            #engine.set_player_speed_stop()
+            self.moving = True
         elif pygame.K_LEFT in keys:
-            engine.set_player_speed_slow()
+            #engine.set_player_speed_slow()
             engine.set_player_direction(180)
             engine.set_missile_direction(180)
-            engine.set_player_speed_stop()
+            #engine.set_player_speed_stop()
+            self.moving = True
         elif pygame.K_RIGHT in keys:
-            engine.set_player_speed_slow()
+            #engine.set_player_speed_slow()
             engine.set_player_direction(0)
             engine.set_missile_direction(0)
+            #engine.set_player_speed_stop()
+            self.moving = True
+        else:
+            self.moving = False
+        if self.moving:
+            engine.set_player_speed_slow()
+        else:
             engine.set_player_speed_stop()
 
        # if pygame.K_1 in newkeys:
@@ -139,10 +150,10 @@ class Control(BaseControl):
        # elif pygame.K_2 in newkeys:
         #    engine.set_player_speed_slow()
             
-       # if pygame.K_q in newkeys:
-        #    engine.set_missile_range_none()
-       # elif pygame.K_w in newkeys:
-         #   engine.set_missile_range_short()
+        if pygame.K_q in newkeys:
+            engine.set_missile_range_none()
+        elif pygame.K_w in newkeys:
+            engine.set_missile_range_short()
 
         if pygame.K_a in newkeys:
             engine.set_missile_power_none()
