@@ -496,7 +496,7 @@ class Display(BaseDisplay):
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (0, surface.get_height() - 50))
                 image = self.get_arrow_image(obj.get_missile_mana())
-                surface.blit(image, (0, surface.get_height() - 50))
+                surface.blit(image, (200, surface.get_height() - 50))
                 
         # display opponent's stats
         oid = engine.get_opponent_oid()
@@ -515,6 +515,6 @@ class Display(BaseDisplay):
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
                 image = self.get_arrow_image(obj.get_missile_mana())
-                surface.blit(image, (0, surface.get_height() - 50))
+                surface.blit(image, (surface.get_width() - 115, surface.get_height() - 50))
         return
 
