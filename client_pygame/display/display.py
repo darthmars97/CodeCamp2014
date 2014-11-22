@@ -173,6 +173,19 @@ class Display(BaseDisplay):
             pygame.image.load("ArrowBar2.png"),
             pygame.image.load("ArrowBar1.png")
         ]
+        self.exp = [
+            pygame.image.load("ExpBar1.png"),
+            pygame.image.load("ExpBar2.png"),
+            pygame.image.load("ExpBar3.png"),
+            pygame.image.load("ExpBar4.png"),
+            pygame.image.load("ExpBar5.png"),
+            pygame.image.load("ExpBar6.png"),
+            pygame.image.load("ExpBar7.png"),
+            pygame.image.load("ExpBar8.png"),
+            pygame.image.load("ExpBar9.png"),
+            pygame.image.load("ExpBar10.png"),
+            pygame.image.load("ExpBar11.png")
+        ]
         return
 
     def paint_pregame(self, surface, control):
@@ -479,6 +492,9 @@ class Display(BaseDisplay):
     def get_arrow_image(self, missile_mana):
         return self.arrows[int(math.ceil(missile_mana))]
 
+    def get_exp(self, experience):
+        return self.exp[int(math.ceiling(experience))]
+
     def paint_game_status(self, surface, engine, control):
         """
         This method displays some text in the bottom strip
@@ -504,6 +520,8 @@ class Display(BaseDisplay):
                 surface.blit(image, (0, surface.get_height() - 50))
                 image = self.get_arrow_image(obj.get_missile_mana())
                 surface.blit(image, (100, surface.get_height() - 50))
+                image = self.get_exp(obj.get_experience())
+                surface.blit(image, (115, surface.get_height() - 50))
                 
         # display opponent's stats
         oid = engine.get_opponent_oid()
