@@ -497,7 +497,7 @@ class Display(BaseDisplay):
     def get_arrow_image(self, missile_mana):
         if missile_mana > 10.0:
             missile_mana = 10.0
-        return self.arrows[int(math.ceil(missile_mana))]
+        return self.arrows[int(math.floor(missile_mana))]
 
     def get_exp(self, experience):
         experience = experience / 4.5
