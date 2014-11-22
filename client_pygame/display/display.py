@@ -220,10 +220,15 @@ class Display(BaseDisplay):
         """
         import os
         #print(os.getcwd())
-       # if isinstance(event, MissileFireEvent):
-          # sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
-          #  sound.set_volume(1.00)
-           # sound.play()
+        if isinstance(event, MissileFireEvent):
+            if event.get_player_oid() == engine.get_player_oid():
+                sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
+                sound.set_volume(1.00)
+                sound.play()
+            else:
+                sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'Fireball+3.wav'))
+                sound.set_volume(1.00)
+                sound.play()
         return
 
     # The following methods draw appropriate rectangles
@@ -265,9 +270,6 @@ class Display(BaseDisplay):
         if obj.is_alive():
             if obj.get_player_oid() == engine.get_player_oid():
                 rect = self.obj_to_rect(obj)
-                #sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
-                #sound.set_volume(1.00)
-                #sound.play()
                 if obj.get_dx() <= 0:
                         if abs(obj.get_dx()) > abs(obj.get_dy()):
                             # facing left image
