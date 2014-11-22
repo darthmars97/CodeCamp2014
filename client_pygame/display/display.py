@@ -3,6 +3,7 @@
 # Make changes and add functions as you need.
 #
 
+import math
 import pygame
 from config import *
 from common.event import *
@@ -138,6 +139,19 @@ class Display(BaseDisplay):
         self.background_color = (0, 0, 0)
         self.background_image = pygame.image.load("BackgroundV1.png")
         self.title_image = pygame.image.load("TitleScreen.png")
+        self.health_images = [
+            pygame.image.load("Health Bar1.png"),
+            pygame.image.load("Health Bar2.png"),
+            pygame.image.load("Health Bar3.png"),
+            pygame.image.load("Health Bar4.png"),
+            pygame.image.load("Health Bar5.png"),
+            pygame.image.load("Health Bar6.png"),
+            pygame.image.load("Health Bar7.png"),
+            pygame.image.load("Health Bar8.png"),
+            pygame.image.load("Health Bar9.png"),
+            pygame.image.load("Health Bar10.png"),
+            pygame.image.load("Health Bar11.png"),
+        ]
         return
 
     def paint_pregame(self, surface, control):
@@ -437,6 +451,10 @@ class Display(BaseDisplay):
                     surface.blit(self.enemy_image, (obj.get_px(), obj.get_py()))
         return
 
+    def get_health_image(self, health):
+        health = health / 3.0
+        return self.health_images[int(math.ceil(health))]
+
     def paint_game_status(self, surface, engine, control):
         """
         This method displays some text in the bottom strip
@@ -458,6 +476,8 @@ class Display(BaseDisplay):
                 position_x = 20
                 position_y = self.height - STATUS_BAR_HEIGHT + 3 * self.font_size / 2
                 self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
+                image = self.get_health_image(obj.get_health())
+                surface.blit(image, (0, surface.get_height() - 50))
                 
         # display opponent's stats
         oid = engine.get_opponent_oid()
@@ -473,5 +493,7 @@ class Display(BaseDisplay):
                 position_x = 20
                 position_y = self.height - STATUS_BAR_HEIGHT + 6 * self.font_size / 2
                 self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
+                image = self.get_health_image(obj.get_health())
+                surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
         return
 
