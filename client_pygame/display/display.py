@@ -175,8 +175,7 @@ class Display(BaseDisplay):
             pygame.image.load("ExpBar7.png"),
             pygame.image.load("ExpBar8.png"),
             pygame.image.load("ExpBar9.png"),
-            pygame.image.load("ExpBar10.png"),
-            pygame.image.load("ExpBar11.png")
+            pygame.image.load("ExpBar10.png")
         ]
         return
 
@@ -485,7 +484,7 @@ class Display(BaseDisplay):
         return self.arrows[int(math.ceil(missile_mana))]
 
     def get_exp(self, experience):
-        return self.exp[int(math.ceiling(experience))]
+        return self.exp[int(math.ceil(experience))]
 
     def paint_game_status(self, surface, engine, control):
         """
@@ -513,7 +512,7 @@ class Display(BaseDisplay):
                 image = self.get_arrow_image(obj.get_missile_mana())
                 surface.blit(image, (100, surface.get_height() - 50))
                 image = self.get_exp(obj.get_experience())
-                surface.blit(image, (115, surface.get_height() - 50))                
+                surface.blit(image, (130, surface.get_height() - 50))
         # display opponent's stats
         oid = engine.get_opponent_oid()
         if oid > 0: 
@@ -530,5 +529,9 @@ class Display(BaseDisplay):
                 #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
+                image = self.get_arrow_image(obj.get_missile_mana())
+                surface.blit(image, (surface.get_width() - 155, surface.get_height() - 50))
+                image = self.get_exp(obj.get_experience())
+                surface.blit(image, (surface.get_width() - 200, surface.get_height() - 50))
         return
 
