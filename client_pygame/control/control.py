@@ -155,6 +155,8 @@ class Control(BaseControl):
             
                 
         if pygame.K_SPACE in newkeys:
+            oid = engine.get_player_oid()
+            player = engine.get_object(oid)
             if player.get_experience() >= 30:
                 engine.set_missile_range_high()
             elif player.get_experience() >= 9:
