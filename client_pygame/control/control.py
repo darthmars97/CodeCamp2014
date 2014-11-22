@@ -141,7 +141,14 @@ class Control(BaseControl):
         else:
             self.moving = False
         if self.moving:
-            engine.set_player_speed_slow()
+            oid = engine.get_player_oid()
+            player = engine.get_object(oid)
+            if player.get_experience() >= 24:
+                engine.set_player_speed_fast()
+            elif player.get_experience() >= 3:
+                engine.set_player_speed_medium()
+            else:
+                engine.set_player_speed_slow()
         else:
             engine.set_player_speed_stop()
             
