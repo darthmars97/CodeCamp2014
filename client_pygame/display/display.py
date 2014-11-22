@@ -118,6 +118,7 @@ class Display(BaseDisplay):
         self.background_color = (0, 0, 0)
         self.background_image = pygame.image.load("BackgroundV1.png")
         self.wall_image = pygame.image.load("Wall.png")
+        self.arrowup_image = pygame.image.load("ArrowUp.png")
         return
 
     def paint_pregame(self, surface, control):
@@ -253,6 +254,7 @@ class Display(BaseDisplay):
             color = self.missile_color
             rect = self.obj_to_rect(obj)
             pygame.draw.rect(surface, color, rect)
+            #surface.blit(self.arrowup_image, rect)
         return
         
     def paint_player(self, surface, engine, control, obj):
