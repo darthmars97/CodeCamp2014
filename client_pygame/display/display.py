@@ -264,11 +264,7 @@ class Display(BaseDisplay):
         if obj.is_alive():
             color = self.missile_color
             rect = self.obj_to_rect(obj)
-            pygame.draw.rect(surface, color, rect)
-#<<<<<<< HEAD
             surface.blit(self.arrow_image_up, rect)
-#=======
-#>>>>>>> 16fbf778aec4757d9a355643583725cf658f7c0c
         return
         
     def paint_player(self, surface, engine, control, obj):
