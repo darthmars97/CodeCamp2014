@@ -140,6 +140,8 @@ class Display(BaseDisplay):
         self.background_color = (0, 0, 0)
         self.background_image = pygame.image.load("BackgroundV1.png")
         self.game_over_lose = pygame.image.load("LoseScreen.png")
+        self.game_over_win = pygame.image.load("VictoryScreen.png")
+        self.game_load = pygame.image.load("LoadingScreen.png")
         self.title_image = pygame.image.load("TitleScreen.png")
         self.health_images = [
             pygame.image.load("Health Bar11.png"),
@@ -213,12 +215,12 @@ class Display(BaseDisplay):
         """
         # background
         rect = pygame.Rect(0, 0, self.width, self.height)
-        surface.fill(self.background_color, rect)
+        surface.blit(self.game_load, rect)
         # text message in center of screen
-        s = "Waiting for an opponent who is willing to get destroyed to connect."
-        self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2,
-                              self.font)
+        #s = "Waiting for an opponent who is willing to get destroyed
+        #self.draw_text_center(surface, s, self.text_color,
+                             # self.width/2, self.height/2,
+                             # self.font)
         return
 
     def paint_game(self, surface, engine, control):
@@ -258,7 +260,7 @@ class Display(BaseDisplay):
         """
         if engine.get_name() == engine.get_winner_name():
             rect = pygame.Rect(0, 0, self.width, self.height)
-            surface.blit(self.game_over_lose, rect)
+            surface.blit(self.game_over_win, rect)
         else:
             rect = pygame.Rect(0, 0, self.width, self.height)
             surface.blit(self.game_over_lose, rect)
