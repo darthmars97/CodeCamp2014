@@ -89,8 +89,16 @@ class Display(BaseDisplay):
         # There are other fonts available, but they are not
         # the same on every computer.  You can read more about
         # fonts at http://www.pygame.org/docs/ref/font.html
+        import os
+        print(os.getcwd())
         self.font_size = 50
         self.font = pygame.font.SysFont("parchment",self.font_size)
+        self.music = "8bit Adventure Music.mp3"
+        #self.current_music = 0
+        pygame.mixer.init()
+        pygame.mixer.music.load(self.music)
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(1.00)
        
 
         # Colors are specified as a triple of integers from 0 to 255.
@@ -253,11 +261,11 @@ class Display(BaseDisplay):
         if isinstance(event, MissileFireEvent):
             if event.get_player_oid() == engine.get_player_oid():
                 sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
-                sound.set_volume(1.00)
+                sound.set_volume(0.50)
                 sound.play()
             else:
                 sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'Fireball+3.wav'))
-                sound.set_volume(1.00)
+                sound.set_volume(0.50)
                 sound.play()
         return
 
