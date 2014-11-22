@@ -244,15 +244,14 @@ class Display(BaseDisplay):
             #color = self.npc_color
             #rect = self.obj_to_rect(obj)
             #pygame.draw.rect(surface, color, rect)
-            if self.npc_image_count <= 5:
+            if self.npc_image_count <= 3:
                 surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
                 self.npc_image_count += 1
-            elif self.npc_image_count > 5:
-                surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+            elif self.npc_image_count > 3:
+                surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
                 self.npc_image_count += 1
-            elif self.npc_image_count > 10:
+            elif self.npc_image_count > 6:
                 self.npc_image_count = 0
-
         return
         
     def paint_missile(self, surface, engine, control, obj):
