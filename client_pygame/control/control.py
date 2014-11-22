@@ -75,7 +75,7 @@ class Control(BaseControl):
         
         BaseControl.__init__(self, width, height)
         # used to control display of individual item information
-        self.show_info = False
+        self.show_info = True
         self.moving = False
         return
 
@@ -182,8 +182,8 @@ class Control(BaseControl):
                 engine.set_missile_power_low()
 
 
-        if pygame.K_i in newkeys:
-            self.show_info = not self.show_info
+        #if pygame.K_i in newkeys:
+            #self.show_info = not self.show_info
 
         return
         
