@@ -168,7 +168,7 @@ class Control(BaseControl):
             oid = engine.get_player_oid()
             player = engine.get_object(oid)
             if player.get_experience() >= 30:
-                engine.set_missile_range_high()
+                engine.set_missile_range_long()
             elif player.get_experience() >= 9:
                 engine.set_missile_range_medium()
             else:
