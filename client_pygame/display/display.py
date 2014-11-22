@@ -265,9 +265,9 @@ class Display(BaseDisplay):
         if obj.is_alive():
             if obj.get_player_oid() == engine.get_player_oid():
                 rect = self.obj_to_rect(obj)
-                sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
-                sound.set_volume(1.00)
-                sound.play()
+                #sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
+                #sound.set_volume(1.00)
+                #sound.play()
                 if obj.get_dx() <= 0:
                         if abs(obj.get_dx()) > abs(obj.get_dy()):
                             # facing left image
