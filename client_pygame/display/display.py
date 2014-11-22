@@ -3,6 +3,7 @@
 # Make changes and add functions as you need.
 #
 
+import math
 import pygame
 from config import *
 from common.event import *
@@ -177,6 +178,11 @@ class Display(BaseDisplay):
             pygame.image.load("ExpBar9.png"),
             pygame.image.load("ExpBar10.png")
         ]
+        self.music = "8bit Adventure Music.mp3"
+        pygame.mixer.init()
+        pygame.mixer.music.load(self.music)
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(1.00)
         return
 
     def paint_pregame(self, surface, control):
@@ -264,11 +270,11 @@ class Display(BaseDisplay):
         if isinstance(event, MissileFireEvent):
             if event.get_player_oid() == engine.get_player_oid():
                 sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
-                sound.set_volume(1.00)
+                sound.set_volume(0.50)
                 sound.play()
             else:
                 sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'Fireball+3.wav'))
-                sound.set_volume(1.00)
+                sound.set_volume(0.50)
                 sound.play()
         return
 
@@ -481,9 +487,12 @@ class Display(BaseDisplay):
         return self.health_images[int(math.ceil(health))]
 
     def get_arrow_image(self, missile_mana):
+        if missile_mana > 10.0:
+            missile_mana = 10.0
         return self.arrows[int(math.ceil(missile_mana))]
 
     def get_exp(self, experience):
+        experience = experience / 4.5
         return self.exp[int(math.ceil(experience))]
 
     def paint_game_status(self, surface, engine, control):
