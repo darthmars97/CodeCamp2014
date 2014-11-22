@@ -89,16 +89,8 @@ class Display(BaseDisplay):
         # There are other fonts available, but they are not
         # the same on every computer.  You can read more about
         # fonts at http://www.pygame.org/docs/ref/font.html
-        import os
-        print(os.getcwd())
-        self.font_size = 50
-        self.font = pygame.font.SysFont("parchment",self.font_size)
-        self.music = "8bit Adventure Music.mp3"
-        #self.current_music = 0
-        pygame.mixer.init()
-        pygame.mixer.music.load(self.music)
-        pygame.mixer.music.play(-1)
-        pygame.mixer.music.set_volume(1.00)
+        self.font_size = 30
+        self.font = pygame.font.SysFont("oldenglishtext",self.font_size)
        
 
         # Colors are specified as a triple of integers from 0 to 255.
@@ -159,19 +151,6 @@ class Display(BaseDisplay):
             pygame.image.load("Health Bar3.png"),
             pygame.image.load("Health Bar2.png"),
             pygame.image.load("Health Bar1.png"),
-        ]
-        self.arrows = [
-            pygame.image.load("ArrowBar11.png"),
-            pygame.image.load("ArrowBar10.png"),
-            pygame.image.load("ArrowBar9.png"),
-            pygame.image.load("ArrowBar8.png"),
-            pygame.image.load("ArrowBar7.png"),
-            pygame.image.load("ArrowBar6.png"),
-            pygame.image.load("ArrowBar5.png"),
-            pygame.image.load("ArrowBar4.png"),
-            pygame.image.load("ArrowBar3.png"),
-            pygame.image.load("ArrowBar2.png"),
-            pygame.image.load("ArrowBar1.png")
         ]
         return
 
@@ -260,11 +239,11 @@ class Display(BaseDisplay):
         if isinstance(event, MissileFireEvent):
             if event.get_player_oid() == engine.get_player_oid():
                 sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'fire.wav'))
-                sound.set_volume(0.50)
+                sound.set_volume(1.00)
                 sound.play()
             else:
                 sound = pygame.mixer.Sound(os.path.join(os.getcwd(), 'Fireball+3.wav'))
-                sound.set_volume(0.50)
+                sound.set_volume(1.00)
                 sound.play()
         return
 
@@ -472,13 +451,6 @@ class Display(BaseDisplay):
                     surface.blit(self.enemy_image, (obj.get_px(), obj.get_py()))
         return
 
-    def get_health_image(self, health):
-        health = health / 3.0
-        return self.health_images[int(math.ceil(health))]
-
-    def get_arrow_image(self, missile_mana):
-        return self.arrows[int(math.ceil(missile_mana))]
-
     def paint_game_status(self, surface, engine, control):
         """
         This method displays some text in the bottom strip
@@ -501,9 +473,7 @@ class Display(BaseDisplay):
                 position_y = self.height - STATUS_BAR_HEIGHT + 3 * self.font_size / 2
                 #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
-                surface.blit(image, (0, surface.get_height() - 50))
-                image = self.get_arrow_image(obj.get_missile_mana())
-                surface.blit(image, (100, surface.get_height() - 50))
+                surface.blit(image, (0, surface.get_height() - 50))\
                 
         # display opponent's stats
         oid = engine.get_opponent_oid()
@@ -521,7 +491,5 @@ class Display(BaseDisplay):
                 #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
-                image = self.get_arrow_image(obj.get_missile_mana())
-                surface.blit(image, (surface.get_width() - 150, surface.get_height() - 50))
         return
 
