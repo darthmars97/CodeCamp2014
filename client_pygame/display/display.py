@@ -140,17 +140,17 @@ class Display(BaseDisplay):
         self.background_image = pygame.image.load("BackgroundV1.png")
         self.title_image = pygame.image.load("TitleScreen.png")
         self.health_images = [
-            pygame.image.load("Health Bar1.png"),
-            pygame.image.load("Health Bar2.png"),
-            pygame.image.load("Health Bar3.png"),
-            pygame.image.load("Health Bar4.png"),
-            pygame.image.load("Health Bar5.png"),
-            pygame.image.load("Health Bar6.png"),
-            pygame.image.load("Health Bar7.png"),
-            pygame.image.load("Health Bar8.png"),
-            pygame.image.load("Health Bar9.png"),
-            pygame.image.load("Health Bar10.png"),
             pygame.image.load("Health Bar11.png"),
+            pygame.image.load("Health Bar10.png"),
+            pygame.image.load("Health Bar9.png"),
+            pygame.image.load("Health Bar8.png"),
+            pygame.image.load("Health Bar7.png"),
+            pygame.image.load("Health Bar6.png"),
+            pygame.image.load("Health Bar5.png"),
+            pygame.image.load("Health Bar4.png"),
+            pygame.image.load("Health Bar3.png"),
+            pygame.image.load("Health Bar2.png"),
+            pygame.image.load("Health Bar1.png"),
         ]
         return
 
