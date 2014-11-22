@@ -264,10 +264,10 @@ class Display(BaseDisplay):
             color = self.missile_color
             rect = self.obj_to_rect(obj)
             pygame.draw.rect(surface, color, rect)
-<<<<<<< HEAD
+#<<<<<<< HEAD
             surface.blit(self.arrowup_image, rect)
-=======
->>>>>>> 16fbf778aec4757d9a355643583725cf658f7c0c
+#=======
+#>>>>>>> 16fbf778aec4757d9a355643583725cf658f7c0c
         return
         
     def paint_player(self, surface, engine, control, obj):
