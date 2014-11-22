@@ -3,7 +3,6 @@
 # Make changes and add functions as you need.
 #
 
-import math
 import pygame
 from config import *
 from common.event import *
@@ -90,8 +89,9 @@ class Display(BaseDisplay):
         # There are other fonts available, but they are not
         # the same on every computer.  You can read more about
         # fonts at http://www.pygame.org/docs/ref/font.html
-        self.font_size = 12
-        self.font = pygame.font.SysFont("Courier New",self.font_size)
+        self.font_size = 30
+        self.font = pygame.font.SysFont("oldlondon",self.font_size)
+       
 
         # Colors are specified as a triple of integers from 0 to 255.
         # The values are how much red, green, and blue to use in the color.
@@ -139,19 +139,6 @@ class Display(BaseDisplay):
         self.background_color = (0, 0, 0)
         self.background_image = pygame.image.load("BackgroundV1.png")
         self.title_image = pygame.image.load("TitleScreen.png")
-        self.health_images = [
-            pygame.image.load("Health Bar1.png"),
-            pygame.image.load("Health Bar2.png"),
-            pygame.image.load("Health Bar3.png"),
-            pygame.image.load("Health Bar4.png"),
-            pygame.image.load("Health Bar5.png"),
-            pygame.image.load("Health Bar6.png"),
-            pygame.image.load("Health Bar7.png"),
-            pygame.image.load("Health Bar8.png"),
-            pygame.image.load("Health Bar9.png"),
-            pygame.image.load("Health Bar10.png"),
-            pygame.image.load("Health Bar11.png"),
-        ]
         return
 
     def paint_pregame(self, surface, control):
@@ -165,11 +152,11 @@ class Display(BaseDisplay):
         # text message in center of screen
         s = "Press 'd' for dual player, 's' for single player,"
         self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2,
+                              self.width/2, self.height/2.25,
                               self.font)
         s = "'t' for tournament, 'esc' to quit."
         self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2 + 3*self.font_size/2,
+                              self.width/2, self.height/2.25 + 3*self.font_size/2,
                               self.font)
         return
         
@@ -451,10 +438,6 @@ class Display(BaseDisplay):
                     surface.blit(self.enemy_image, (obj.get_px(), obj.get_py()))
         return
 
-    def get_health_image(self, health):
-        health = health / 3.0
-        return self.health_images[int(math.ceil(health))]
-
     def paint_game_status(self, surface, engine, control):
         """
         This method displays some text in the bottom strip
@@ -476,8 +459,6 @@ class Display(BaseDisplay):
                 position_x = 20
                 position_y = self.height - STATUS_BAR_HEIGHT + 3 * self.font_size / 2
                 self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
-                image = self.get_health_image(obj.get_health())
-                surface.blit(image, (0, surface.get_height() - 50))
                 
         # display opponent's stats
         oid = engine.get_opponent_oid()
@@ -493,7 +474,5 @@ class Display(BaseDisplay):
                 position_x = 20
                 position_y = self.height - STATUS_BAR_HEIGHT + 6 * self.font_size / 2
                 self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
-                image = self.get_health_image(obj.get_health())
-                surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
         return
 
