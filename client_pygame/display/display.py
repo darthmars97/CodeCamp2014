@@ -247,10 +247,10 @@ class Display(BaseDisplay):
             if self.npc_image_count <= 3:
                 surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
                 self.npc_image_count += 1
-            elif self.npc_image_count > 3:
+            elif 3 < self.npc_image_count <= 6:
                 surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
                 self.npc_image_count += 1
-            elif self.npc_image_count > 6:
+            else:
                 self.npc_image_count = 0
         return
         
