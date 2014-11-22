@@ -137,6 +137,7 @@ class Display(BaseDisplay):
         self.text_color       = (255, 255, 255)
         self.background_color = (0, 0, 0)
         self.background_image = pygame.image.load("BackgroundV1.png")
+        self.title_image = pygame.image.load("TitleScreen.png")
         return
 
     def paint_pregame(self, surface, control):
@@ -145,7 +146,8 @@ class Display(BaseDisplay):
         """
         # background
         rect = pygame.Rect(0, 0, self.width, self.height)
-        surface.fill(self.background_color, rect)
+        #surface.fill(self.background_color, rect)
+        surface.blit(self.title_image, rect)
         # text message in center of screen
         s = "Press 'd' for dual player, 's' for single player,"
         self.draw_text_center(surface, s, self.text_color,
