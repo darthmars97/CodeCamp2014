@@ -147,6 +147,8 @@ class Control(BaseControl):
 
                 
         if pygame.K_SPACE in newkeys:
+            engine.fire_missile()
+
             oid = engine.get_player_oid()
             player = engine.get_object(oid)
             if player.get_experience() >= 30:
