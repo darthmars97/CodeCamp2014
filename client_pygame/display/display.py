@@ -123,6 +123,9 @@ class Display(BaseDisplay):
         self.enemy_image_count = 0
         self.missile_color    = (0, 255, 255)
         self.arrow_image_up   = pygame.image.load("ArrowUp.png")
+        self.arrow_image_down = pygame.image.load("ArrowDown.png")
+        self.arrow_image_left = pygame.image.load("ArrowLeft.png")
+        self.arrow_image_right = pygame.image.load("ArrowRight.png")
         self.npc_image1       = pygame.image.load("NPC1.png")
         self.npc_image2       = pygame.image.load("NPC2.png")
         self.npc_image_count  = 0
@@ -264,7 +267,21 @@ class Display(BaseDisplay):
         if obj.is_alive():
             color = self.missile_color
             rect = self.obj_to_rect(obj)
-            surface.blit(self.arrow_image_up, rect)
+            #surface.blit(self.arrow_image_up, rect)
+            if obj.get_dx() <= 0:
+                    if abs(obj.get_dx()) > abs(obj.get_dy()):
+                        # facing left image
+                        surface.blit(self.arrow_image_left, rect)
+                    else:
+                        # facing up image
+                        surface.blit(self.arrow_image_up, rect)
+            elif obj.get_dx > 0:
+                    if abs(obj.get_dx()) > abs(obj.get_dy()):
+                        # facing right image
+                        surface.blit(self.arrow_image_right, rect)
+                    else:
+                        # facing down image
+                        surface.blit(self.arrow_image_down, rect)
         return
         
     def paint_player(self, surface, engine, control, obj):
