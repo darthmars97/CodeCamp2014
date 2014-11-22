@@ -170,7 +170,7 @@ class Control(BaseControl):
                 engine.set_missile_mana_short()
 
             if player.get_experience() >= 33:
-                engine.set_missile_move_mana_ high()
+                engine.set_missile_move_mana_high()
             elif player.get_experience() >= 12:
                 engine.set_missile_move_mana_medium()
             else:
