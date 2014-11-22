@@ -501,7 +501,12 @@ class Display(BaseDisplay):
 
     def get_exp(self, experience):
         experience = experience / 4.5
-        return self.exp[int(math.ceil(experience))]
+        i = int(math.ceil(experience))
+        if i < 0:
+            i = 0
+        elif i >= len(self.exp):
+            i = len(self.exp) - 1
+        return self.exp[i]
 
     def paint_game_status(self, surface, engine, control):
         """
