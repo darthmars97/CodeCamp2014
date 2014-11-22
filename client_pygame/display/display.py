@@ -475,7 +475,7 @@ class Display(BaseDisplay):
                      obj.get_missile_mana())
                 position_x = 20
                 position_y = self.height - STATUS_BAR_HEIGHT + 3 * self.font_size / 2
-                self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
+                #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (0, surface.get_height() - 50))
                 
@@ -492,7 +492,7 @@ class Display(BaseDisplay):
                      obj.get_missile_mana())
                 position_x = 20
                 position_y = self.height - STATUS_BAR_HEIGHT + 6 * self.font_size / 2
-                self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
+                #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
         return
