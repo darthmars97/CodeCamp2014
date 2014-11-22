@@ -178,6 +178,14 @@ class Display(BaseDisplay):
             pygame.image.load("ExpBar9.png"),
             pygame.image.load("ExpBar10.png")
         ]
+        self.move = [
+            pygame.image.load("MovementBar1.png"),
+            pygame.image.load("MovementBar2.png"),
+            pygame.image.load("MovementBar3.png"),
+            pygame.image.load("MovementBar4.png"),
+            pygame.image.load("MovementBar5.png"),
+            pygame.image.load("MovementBar6.png")
+        ]
         self.music = "8bit Adventure Music.mp3"
         pygame.mixer.init()
         pygame.mixer.music.load(self.music)
@@ -495,6 +503,10 @@ class Display(BaseDisplay):
         experience = experience / 4.5
         return self.exp[int(math.ceil(experience))]
 
+    def get_move_mana(self, move_mana):
+        move_mana = move_mana / 6.0
+        return self.move[int(math.ceil(move_mana))]
+
     def paint_game_status(self, surface, engine, control):
         """
         This method displays some text in the bottom strip
@@ -522,6 +534,8 @@ class Display(BaseDisplay):
                 surface.blit(image, (100, surface.get_height() - 50))
                 image = self.get_exp(obj.get_experience())
                 surface.blit(image, (130, surface.get_height() - 50))
+                image = self.get_move_mana(obj.get_move_mana())
+                surface.blit(image, (180, surface.get_height() - 50))
         # display opponent's stats
         oid = engine.get_opponent_oid()
         if oid > 0: 
@@ -542,5 +556,7 @@ class Display(BaseDisplay):
                 surface.blit(image, (surface.get_width() - 155, surface.get_height() - 50))
                 image = self.get_exp(obj.get_experience())
                 surface.blit(image, (surface.get_width() - 200, surface.get_height() - 50))
+                image = self.get_move_mana(obj.get_move_mana())
+                surface.blit(image, (surface.get_width() - 245, surface.get_height() - 50))
         return
 
