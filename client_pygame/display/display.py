@@ -110,7 +110,9 @@ class Display(BaseDisplay):
         self.image_count      = 0
         self.opponent_color   = (255, 0, 0)
         self.missile_color    = (0, 255, 255)
-        self.npc_color        = (255, 255, 0)
+        self.npc_image1       = pygame.image.load("NPC1.png")
+        self.npc_image2       = pygame.image.load("NPC2.png")
+        self.npc_image_count  = 0
         self.wall_color       = (255, 255, 255)
         self.text_color       = (255, 255, 255)
         self.background_color = (0, 0, 0)
@@ -224,9 +226,23 @@ class Display(BaseDisplay):
         Draws living NPCs.
         """
         if obj.is_alive():
-            color = self.npc_color
-            rect = self.obj_to_rect(obj)
-            pygame.draw.rect(surface, color, rect)
+            #color = self.npc_color
+            #rect = self.obj_to_rect(obj)
+            #pygame.draw.rect(surface, color, rect)
+            if self.npc_image_count <= 5:
+                surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                self.npc_image_count += 1
+            elif 5 < self.npc_image_count <= 9:
+                self.npc_image_count += 1
+                surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+            elif 9 < self.npc_image_count <= 14:
+                surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                self.npc_image_count += 1
+            elif 14 < self.npc_image_count <= 19:
+                self.npc_image_count += 1
+                surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                if self.npc_image_count > 19:
+                    self.npc_image_count = 0
         return
         
     def paint_missile(self, surface, engine, control, obj):
