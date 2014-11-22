@@ -259,9 +259,7 @@ class Display(BaseDisplay):
         Draws living missiles.
         """
         if obj.is_alive():
-            color = self.missile_color
             rect = self.obj_to_rect(obj)
-            #surface.blit(self.arrow_image_up, rect)
             if obj.get_dx() <= 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
                         # facing left image
