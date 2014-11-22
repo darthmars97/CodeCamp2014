@@ -141,18 +141,10 @@ class Control(BaseControl):
                 engine.set_player_speed_medium()
             else:
                 engine.set_player_speed_slow()
-
-            if player.get_experience() >= 39:
-                engine.set_move_mana_recharge_fast()
-            elif player.get_experience() >= 18:
-                engine.set_move_mana_recharge_medium()
-            else:
-                engine.set_move_mana_recharge_slow()
         else:
             engine.set_player_speed_stop()
             
-        
-            
+
                 
         if pygame.K_SPACE in newkeys:
             oid = engine.get_player_oid()
@@ -164,20 +156,6 @@ class Control(BaseControl):
             else:
                 engine.set_missile_range_short()
 
-            if player.get_experience() >= 27:
-                engine.set_missile_mana_high()
-            elif player.get_experience() >= 6:
-                engine.set_missile_mana_medium()
-            else:
-                engine.set_missile_mana_short()
-
-            if player.get_experience() >= 33:
-                engine.set_missile_move_mana_high()
-            elif player.get_experience() >= 12:
-                engine.set_missile_move_mana_medium()
-            else:
-                engine.set_missile_move_mana_short()
-
             if player.get_experience() >= 36:
                 engine.set_missile_power_high()
             elif player.get_experience() >= 15:
@@ -185,14 +163,6 @@ class Control(BaseControl):
             else:
                 engine.set_missile_power_low()
 
-            if player.get_experience() >= 42:
-                engine.set_missile_mana_recharge_fast()
-            elif player.get_experience() >= 21: 
-                engine.set_missile_mana_recharge_medium()
-            else:
-                engine.set_missile_mana_recharge_slow()
-
-            
 
         if pygame.K_i in newkeys:
             self.show_info = not self.show_info
