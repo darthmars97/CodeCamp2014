@@ -114,12 +114,12 @@ class Display(BaseDisplay):
         self.enemy_image_back1 = pygame.image.load("EnemyBack1.png")
         self.enemy_image_back2 = pygame.image.load("EnemyBack2.png")
         self.enemy_image_back_standard = pygame.image.load("EnemyBackStandard.png")
-        self.enemy_image_right_standard = pygame.image.load("SideStandard.png")
-        self.enemy_image_right1 = pygame.image.load("SideWalk1.png")
-        self.enemy_image_right2 = pygame.image.load("SideWalk2.png")
-        self.enemy_image_left_standard = pygame.image.load("LeftStandard.png")
-        self.enemy_image_left1 = pygame.image.load("LeftWalk1.png")
-        self.enemy_image_left2 = pygame.image.load("LeftWalk2.png")
+        self.enemy_image_right_standard = pygame.image.load("EnemyRightStandard.png")
+        self.enemy_image_right1 = pygame.image.load("EnemyRight1.png")
+        self.enemy_image_right2 = pygame.image.load("EnemyRight2.png")
+        self.enemy_image_left_standard = pygame.image.load("EnemyLeftStandard.png")
+        self.enemy_image_left1 = pygame.image.load("EnemyLeft1.png")
+        self.enemy_image_left2 = pygame.image.load("EnemyLeft2.png")
         self.enemy_image_count = 0
         self.missile_color    = (0, 255, 255)
         self.arrow_image_up   = pygame.image.load("ArrowUp.png")
@@ -358,20 +358,20 @@ class Display(BaseDisplay):
                 if obj.get_dx() <= 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
                         # facing left image
-                        if self.image_count <= 4:
-                            surface.blit(self.player_image_left1, (obj.get_px(), obj.get_py()))
-                            self.image_count += 1
-                        elif 4 < self.image_count <= 9:
-                            self.image_count += 1
-                            surface.blit(self.player_image_left_standard, (obj.get_px(), obj.get_py()))
-                        elif 9 < self.image_count <= 14:
-                            surface.blit(self.player_image_left2, (obj.get_px(), obj.get_py()))
-                            self.image_count += 1
-                        elif 14 < self.image_count <= 19:
-                            self.image_count += 1
-                            surface.blit(self.player_image_left_standard, (obj.get_px(), obj.get_py()))
-                        if self.image_count > 19:
-                            self.image_count = 0
+                        if self.enemy_image_count <= 4:
+                            surface.blit(self.enemy_image_left1, (obj.get_px(), obj.get_py()))
+                            self.enemy_image_count += 1
+                        elif 4 < self.enemy_image_count <= 9:
+                            self.enemy_image_count += 1
+                            surface.blit(self.enemy_image_left_standard, (obj.get_px(), obj.get_py()))
+                        elif 9 < self.enemy_image_count <= 14:
+                            surface.blit(self.enemy_image_left2, (obj.get_px(), obj.get_py()))
+                            self.enemy_image_count += 1
+                        elif 14 < self.enemy_image_count <= 19:
+                            self.enemy_image_count += 1
+                            surface.blit(self.enemy_image_left_standard, (obj.get_px(), obj.get_py()))
+                        if self.enemy_image_count > 19:
+                            self.enemy_image_count = 0
                     else:
                         # facing up image
                         if self.enemy_image_count <= 5:
@@ -388,20 +388,20 @@ class Display(BaseDisplay):
                 elif obj.get_dx > 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
                         # facing right image                        
-                        if self.image_count <= 4:
-                            surface.blit(self.player_image_right1, (obj.get_px(), obj.get_py()))
+                        if self.enemy_image_count <= 4:
+                            surface.blit(self.enemy_image_right1, (obj.get_px(), obj.get_py()))
+                            self.enemy_image_count += 1
+                        elif 4 < self.enemy_image_count <= 9:
+                            self.enemy_image_count += 1
+                            surface.blit(self.enemy_image_right_standard, (obj.get_px(), obj.get_py()))
+                        elif 9 < self.enemy_image_count <= 14:
+                            surface.blit(self.enemy_image_right2, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
-                        elif 4 < self.image_count <= 9:
-                            self.image_count += 1
-                            surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
-                        elif 9 < self.image_count <= 14:
-                            surface.blit(self.player_image_right2, (obj.get_px(), obj.get_py()))
-                            self.image_count += 1
-                        elif 14 < self.image_count <= 19:
-                            self.image_count += 1
-                            surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
-                        if self.image_count > 19:
-                            self.image_count = 0
+                        elif 14 < self.enemy_image_count <= 19:
+                            self.enemy_image_count += 1
+                            surface.blit(self.enemy_image_right_standard, (obj.get_px(), obj.get_py()))
+                        if self.enemy_image_count > 19:
+                            self.enemy_image_count = 0
                     else:
                         # facing down image
                         if self.enemy_image_count <= 5:
