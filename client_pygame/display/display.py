@@ -3,7 +3,6 @@
 # Make changes and add functions as you need.
 #
 
-import math
 import pygame
 from config import *
 from common.event import *
@@ -90,8 +89,9 @@ class Display(BaseDisplay):
         # There are other fonts available, but they are not
         # the same on every computer.  You can read more about
         # fonts at http://www.pygame.org/docs/ref/font.html
-        self.font_size = 12
-        self.font = pygame.font.SysFont("Courier New",self.font_size)
+        self.font_size = 30
+        self.font = pygame.font.SysFont("oldlondon",self.font_size)
+       
 
         # Colors are specified as a triple of integers from 0 to 255.
         # The values are how much red, green, and blue to use in the color.
@@ -179,11 +179,11 @@ class Display(BaseDisplay):
         # text message in center of screen
         s = "Press 'd' for dual player, 's' for single player,"
         self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2,
+                              self.width/2, self.height/2.25,
                               self.font)
         s = "'t' for tournament, 'esc' to quit."
         self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2 + 3*self.font_size/2,
+                              self.width/2, self.height/2.25 + 3*self.font_size/2,
                               self.font)
         return
         
@@ -469,7 +469,7 @@ class Display(BaseDisplay):
         health = health / 3.0
         return self.health_images[int(math.ceil(health))]
 
-    def get_arrows_image(self, missile_mana):
+    def get_arrow_image(self, missile_mana):
         return self.arrows[int(math.ceil(missile_mana))]
 
     def paint_game_status(self, surface, engine, control):
@@ -495,7 +495,7 @@ class Display(BaseDisplay):
                 #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (0, surface.get_height() - 50))
-                image = self.get_missile_mana(obj.get_missile_mana())
+                image = self.get_arrow_image(obj.get_missile_mana())
                 surface.blit(image, (0, surface.get_height() - 50))
                 
         # display opponent's stats
@@ -514,7 +514,7 @@ class Display(BaseDisplay):
                 #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
-                image = self.get_missile_mana(obj.get_missile_mana())
+                image = self.get_arrow_image(obj.get_missile_mana())
                 surface.blit(image, (0, surface.get_height() - 50))
         return
 
