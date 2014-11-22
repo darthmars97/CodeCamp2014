@@ -7,7 +7,7 @@ from engine_server.config import *
 # values, unless you are sure you know what you are doing.
 
 # Configure this to put a title in the top of your window
-DEFAULT_GAME_TITLE = "ROGUE"
+DEFAULT_GAME_TITLE = "B@ND1T5"
 # Configure this to use your name during games with others
 DEFAULT_TEAM_NAME  = "We didn't set our team name yet"
 
