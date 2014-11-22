@@ -245,6 +245,12 @@ class Display(BaseDisplay):
         if obj.is_alive():
             rect = self.obj_to_rect(obj)
             if obj.get_oid() == engine.get_player_oid():
+                #print("hmmm")
+                #for message in reversed(engine.message_queue):
+                #    print("yo")
+                #    if isinstance(message, SetPlayerSpeedMessage):
+                #        speed = message.get_speed()
+                #        print(speed)
                 #color = self.player_color
                 # Marshall the next line draws a image for the player
                 if obj.get_dx() <= 0:
@@ -253,15 +259,17 @@ class Display(BaseDisplay):
                         if self.image_count <= 4:
                             surface.blit(self.player_image_left1, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
-                        elif 4 < self.image_count <= 6:
+                        elif 4 < self.image_count <= 9:
                             self.image_count += 1
                             surface.blit(self.player_image_left_standard, (obj.get_px(), obj.get_py()))
-                        elif 6 < self.image_count <= 9:
+                        elif 9 < self.image_count <= 14:
                             surface.blit(self.player_image_left2, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
-                        elif self.image_count > 9:
-                            self.image_count = 0
+                        elif 14 < self.image_count <= 19:
+                            self.image_count += 1
                             surface.blit(self.player_image_left_standard, (obj.get_px(), obj.get_py()))
+                        if self.image_count > 19:
+                            self.image_count = 0
                     else:
                         # facing up image
                         if self.image_count <= 5:
@@ -273,21 +281,25 @@ class Display(BaseDisplay):
                         elif self.image_count > 10:
                             self.image_count = 0
                             surface.blit(self.player_image_back1, (obj.get_px(), obj.get_py()))
+                        #elif self.image_count == 0:
+                            #surface.blit(self.player_image_back_standard, (obj.get_px(), obj.get_py()))
                 elif obj.get_dx > 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
                         # facing right image                        
                         if self.image_count <= 4:
                             surface.blit(self.player_image_right1, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
-                        elif 4 < self.image_count <= 6:
+                        elif 4 < self.image_count <= 9:
                             self.image_count += 1
                             surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
-                        elif 6 < self.image_count <= 9:
+                        elif 9 < self.image_count <= 14:
                             surface.blit(self.player_image_right2, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
-                        elif self.image_count > 9:
-                            self.image_count = 0
+                        elif 14 < self.image_count <= 19:
+                            self.image_count += 1
                             surface.blit(self.player_image_right_standard, (obj.get_px(), obj.get_py()))
+                        if self.image_count > 19:
+                            self.image_count = 0
                     else:
                         # facing down image
                         if self.image_count <= 5:
