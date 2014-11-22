@@ -122,6 +122,7 @@ class Display(BaseDisplay):
         self.enemy_image_left2 = pygame.image.load("LeftWalk2.png")
         self.enemy_image_count = 0
         self.missile_color    = (0, 255, 255)
+        self.arrow_image_up   = pygame.image.load("ArrowUp.png")
         self.npc_image1       = pygame.image.load("NPC1.png")
         self.npc_image2       = pygame.image.load("NPC2.png")
         self.npc_image_count  = 0
@@ -265,7 +266,7 @@ class Display(BaseDisplay):
             rect = self.obj_to_rect(obj)
             pygame.draw.rect(surface, color, rect)
 #<<<<<<< HEAD
-            surface.blit(self.arrowup_image, rect)
+            surface.blit(self.arrow_image_up, rect)
 #=======
 #>>>>>>> 16fbf778aec4757d9a355643583725cf658f7c0c
         return
