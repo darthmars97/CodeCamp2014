@@ -247,17 +247,12 @@ class Display(BaseDisplay):
             if self.npc_image_count <= 5:
                 surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
                 self.npc_image_count += 1
-            elif 5 < self.npc_image_count <= 9:
-                self.npc_image_count += 1
-                surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
-            elif 9 < self.npc_image_count <= 14:
+            elif self.npc_image_count > 5:
                 surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
                 self.npc_image_count += 1
-            elif 14 < self.npc_image_count <= 19:
-                self.npc_image_count += 1
-                surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
-                if self.npc_image_count > 19:
-                    self.npc_image_count = 0
+            elif self.npc_image_count > 10:
+                self.npc_image_count = 0
+
         return
         
     def paint_missile(self, surface, engine, control, obj):
