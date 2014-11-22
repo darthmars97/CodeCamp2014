@@ -139,6 +139,7 @@ class Display(BaseDisplay):
         self.text_color       = (255, 255, 255)
         self.background_color = (0, 0, 0)
         self.background_image = pygame.image.load("BackgroundV1.png")
+        self.game_over_lose = pygame.image.load("LoseScreen.png")
         self.title_image = pygame.image.load("TitleScreen.png")
         self.health_images = [
             pygame.image.load("Health Bar11.png"),
@@ -177,14 +178,6 @@ class Display(BaseDisplay):
             pygame.image.load("ExpBar8.png"),
             pygame.image.load("ExpBar9.png"),
             pygame.image.load("ExpBar10.png")
-        ]
-        self.move = [
-            pygame.image.load("MovementBar1.png"),
-            pygame.image.load("MovementBar2.png"),
-            pygame.image.load("MovementBar3.png"),
-            pygame.image.load("MovementBar4.png"),
-            pygame.image.load("MovementBar5.png"),
-            pygame.image.load("MovementBar6.png")
         ]
         self.music = "8bit Adventure Music.mp3"
         pygame.mixer.init()
@@ -263,8 +256,13 @@ class Display(BaseDisplay):
         chooses to display the game, and add a game over
         message.
         """
-        self.paint_game(surface, engine, control)
-        
+        if engine.get_name() == engine.get_winner_name():
+            rect = pygame.Rect(0, 0, self.width, self.height)
+            surface.blit(self.game_over_lose, rect)
+        else:
+            rect = pygame.Rect(0, 0, self.width, self.height)
+            surface.blit(self.game_over_lose, rect)
+
         s = "Game Over (%s wins!)" % (engine.get_winner_name())
         self.draw_text_center(surface, s, self.text_color, int(self.width/2), int(self.height/2), self.font)
         return
@@ -299,7 +297,7 @@ class Display(BaseDisplay):
         #pygame.draw.rect(surface, self.wall_color, rect)
         surface.blit(self.wall_image, rect)
         return
-        
+
     def paint_npc(self, surface, engine, control, obj):
         """
         Draws living NPCs.
@@ -503,10 +501,6 @@ class Display(BaseDisplay):
         experience = experience / 4.5
         return self.exp[int(math.ceil(experience))]
 
-    def get_move_mana(self, move_mana):
-        move_mana = move_mana / 6.0
-        return self.move[int(math.ceil(move_mana))]
-
     def paint_game_status(self, surface, engine, control):
         """
         This method displays some text in the bottom strip
@@ -534,8 +528,6 @@ class Display(BaseDisplay):
                 surface.blit(image, (100, surface.get_height() - 50))
                 image = self.get_exp(obj.get_experience())
                 surface.blit(image, (130, surface.get_height() - 50))
-                image = self.get_move_mana(obj.get_move_mana())
-                surface.blit(image, (180, surface.get_height() - 50))
         # display opponent's stats
         oid = engine.get_opponent_oid()
         if oid > 0: 
@@ -556,7 +548,5 @@ class Display(BaseDisplay):
                 surface.blit(image, (surface.get_width() - 155, surface.get_height() - 50))
                 image = self.get_exp(obj.get_experience())
                 surface.blit(image, (surface.get_width() - 200, surface.get_height() - 50))
-                image = self.get_move_mana(obj.get_move_mana())
-                surface.blit(image, (surface.get_width() - 245, surface.get_height() - 50))
         return
 
