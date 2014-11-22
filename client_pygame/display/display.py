@@ -109,17 +109,16 @@ class Display(BaseDisplay):
         self.player_image_left2 = pygame.image.load("LeftWalk2.png")
         self.image_count      = 0
         self.enemy_image   = pygame.image.load("EnemyFrontStandard.png")
-        self.enemy_image_front1 = pygame.image.load("EnemyFront1.png")
-        self.enemy_image_front2 = pygame.image.load("EnemyFront2.png")
-        self.enemy_image_back1 = pygame.image.load("EnemyBack1.png")
-        self.enemy_image_back2 = pygame.image.load("EnemyBack2.png")
-        self.enemy_image_back_standard = pygame.image.load("EnemyBackStandard.png")
-        self.enemy_image_right_standard = pygame.image.load("SideStandard.png")
-        self.enemy_image_right1 = pygame.image.load("SideWalk1.png")
-        self.enemy_image_right2 = pygame.image.load("SideWalk2.png")
-        self.enemy_image_left_standard = pygame.image.load("LeftStandard.png")
-        self.enemy_image_left1 = pygame.image.load("LeftWalk1.png")
-        self.enemy_image_left2 = pygame.image.load("LeftWalk2.png")
+        self.enemy_image_front1 = pygame.image.load("EnemyFrontWalk1.png")
+        self.enemy_image_front2 = pygame.image.load("EnemyFrontWalk2.png")
+        self.enemy_image_back1 = pygame.image.load("EnemyBackWalk1.png")
+        self.enemy_image_back2 = pygame.image.load("EnemyBackWalk2.png")
+        self.player_image_right_standard = pygame.image.load("SideStandard.png")
+        self.player_image_right1 = pygame.image.load("SideWalk1.png")
+        self.player_image_right2 = pygame.image.load("SideWalk2.png")
+        self.player_image_left_standard = pygame.image.load("LeftStandard.png")
+        self.player_image_left1 = pygame.image.load("LeftWalk1.png")
+        self.player_image_left2 = pygame.image.load("LeftWalk2.png")
         self.enemy_image_count = 0
         self.missile_color    = (0, 255, 255)
         self.npc_image1       = pygame.image.load("NPC1.png")
@@ -363,17 +362,17 @@ class Display(BaseDisplay):
                             self.image_count = 0
                     else:
                         # facing up image
-                        if self.enemy_image_count <= 5:
-                            surface.blit(self.enemy_image_back1, (obj.get_px(), obj.get_py()))
-                            self.enemy_image_count += 1
-                        elif 5 < self.enemy_image_count <= 10:
-                            surface.blit(self.enemy_image_back2, (obj.get_px(), obj.get_py()))
-                            self.enemy_image_count += 1
-                        elif self.enemy_image_count > 10:
-                            self.enemy_image_count = 0
-                            surface.blit(self.enemy_image_back1, (obj.get_px(), obj.get_py()))
-                        #elif self.enemy_image_count == 0:
-                            #surface.blit(self.enemy_image_back_standard, (obj.get_px(), obj.get_py()))
+                        if self.image_count <= 5:
+                            surface.blit(self.player_image_back1, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif 5 < self.image_count <= 10:
+                            surface.blit(self.player_image_back2, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif self.image_count > 10:
+                            self.image_count = 0
+                            surface.blit(self.player_image_back1, (obj.get_px(), obj.get_py()))
+                        #elif self.image_count == 0:
+                            #surface.blit(self.player_image_back_standard, (obj.get_px(), obj.get_py()))
                 elif obj.get_dx > 0:
                     if abs(obj.get_dx()) > abs(obj.get_dy()):
                         # facing right image                        
@@ -393,17 +392,17 @@ class Display(BaseDisplay):
                             self.image_count = 0
                     else:
                         # facing down image
-                        if self.enemy_image_count <= 5:
-                            surface.blit(self.enemy_image_front1, (obj.get_px(), obj.get_py()))
-                            self.enemy_image_count += 1
-                        elif 5 < self.enemy_image_count <= 10:
-                            surface.blit(self.enemy_image_front2, (obj.get_px(), obj.get_py()))
-                            self.enemy_image_count += 1
-                        elif self.enemy_image_count > 10:
-                            self.enemy_image_count = 0
-                            surface.blit(self.enemy_image_front1, (obj.get_px(), obj.get_py()))
+                        if self.image_count <= 5:
+                            surface.blit(self.player_image_front1, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif 5 < self.image_count <= 10:
+                            surface.blit(self.player_image_front2, (obj.get_px(), obj.get_py()))
+                            self.image_count += 1
+                        elif self.image_count > 10:
+                            self.image_count = 0
+                            surface.blit(self.player_image_front1, (obj.get_px(), obj.get_py()))
                 else:
-                    surface.blit(self.enemy_image, (obj.get_px(), obj.get_py()))
+                    surface.blit(self.player_image, (obj.get_px(), obj.get_py()))
         return
 
     def paint_game_status(self, surface, engine, control):
