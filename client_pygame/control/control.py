@@ -141,7 +141,7 @@ class Control(BaseControl):
         else:
             self.moving = False
         if self.moving:
-            engine.set_player_speed_slow()
+            engine.set_player_speed_fast()
         else:
             engine.set_player_speed_stop()
             
