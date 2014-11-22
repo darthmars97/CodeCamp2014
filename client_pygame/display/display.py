@@ -197,14 +197,14 @@ class Display(BaseDisplay):
         #surface.fill(self.background_color, rect)
         surface.blit(self.title_image, rect)
         # text message in center of screen
-        s = "Press 'd' for dual player, 's' for single player,"
-        self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2.25,
-                              self.font)
-        s = "'t' for tournament, 'esc' to quit."
-        self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2.25 + 3*self.font_size/2,
-                              self.font)
+        #s = "Press 'd' for dual player, 's' for single player,"
+        #self.draw_text_center(surface, s, self.text_color,
+                              #self.width/2, self.height/2.25,
+                             # self.font)
+        #s = "'t' for tournament, 'esc' to quit."
+        #self.draw_text_center(surface, s, self.text_color,
+                             # self.width/2, self.height/2.25 + 3*self.font_size/2,
+                              #self.font)
         return
         
     def paint_waiting_for_game(self, surface, engine, control):
