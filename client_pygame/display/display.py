@@ -152,6 +152,20 @@ class Display(BaseDisplay):
             pygame.image.load("Health Bar2.png"),
             pygame.image.load("Health Bar1.png"),
         ]
+        self.arrows = [
+            pygame.image.load("ArrowBar12.png"),
+            pygame.image.load("ArrowBar11.png"),
+            pygame.image.load("ArrowBar10.png"),
+            pygame.image.load("ArrowBar9.png"),
+            pygame.image.load("ArrowBar8.png"),
+            pygame.image.load("ArrowBar7.png"),
+            pygame.image.load("ArrowBar6.png"),
+            pygame.image.load("ArrowBar5.png"),
+            pygame.image.load("ArrowBar4.png"),
+            pygame.image.load("ArrowBar3.png"),
+            pygame.image.load("ArrowBar2.png"),
+            pygame.image.load("ArrowBar1.png")
+        ]
         return
 
     def paint_pregame(self, surface, control):
@@ -455,6 +469,9 @@ class Display(BaseDisplay):
         health = health / 3.0
         return self.health_images[int(math.ceil(health))]
 
+    def get_arrows_image(self, missile_mana):
+        return self.arrows[int(math.ceil(missile_mana))]
+
     def paint_game_status(self, surface, engine, control):
         """
         This method displays some text in the bottom strip
@@ -478,6 +495,8 @@ class Display(BaseDisplay):
                 #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (0, surface.get_height() - 50))
+                image = self.get_missile_mana(obj.get_missile_mana())
+                surface.blit(image, (0, surface.get_height() - 50))
                 
         # display opponent's stats
         oid = engine.get_opponent_oid()
@@ -495,5 +514,7 @@ class Display(BaseDisplay):
                 #self.draw_text_left(surface, s, self.text_color, position_x, position_y, self.font)
                 image = self.get_health_image(obj.get_health())
                 surface.blit(image, (surface.get_width() - 108, surface.get_height() - 50))
+                image = self.get_missile_mana(obj.get_missile_mana())
+                surface.blit(image, (0, surface.get_height() - 50))
         return
 
